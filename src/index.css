@@ -6,7 +6,6 @@
   --forest: #4e6a3d;
   --brown: #5f4f38;
 
- 
   --bg: #f8f8f2;
   --surface: #ffffff;
   --border: #e6e4d8;
@@ -32,12 +31,12 @@ body {
 }
 
 .container {
-  max-width: 760px;
+  max-width: 960px; /* 从 760 加宽，6 列的表格才不会太挤 */
   margin: 0 auto;
   padding: 48px 16px;
 }
 
-/* 标题 */
+/* title */
 h1 {
   margin: 0 0 28px;
   font-size: 32px;
@@ -62,7 +61,7 @@ h2 {
   color: var(--forest);
 }
 
-/* 表单 */
+/* form */
 .app-form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -96,4 +95,102 @@ h2 {
   box-shadow: 0 0 0 3px var(--blue-soft);
 }
 
-.
+.app-form button {
+  padding: 10px 16px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--forest);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.app-form button:hover { background: var(--brown); }
+
+.app-form button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--green-soft);
+}
+
+/* empty state */
+.empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+/* table */
+.table-wrap {
+  overflow-x: auto; 
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.app-table th,
+.app-table td {
+  padding: 12px 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.app-table th {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--forest);
+  background: var(--green-soft);
+}
+
+.app-table tbody tr {
+  border-top: 1px solid var(--border);
+}
+
+.app-table tbody tr:hover {
+  background: var(--bg);
+}
+
+/* status badges */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.badge-applied      { background: var(--blue-soft);   color: #4a5c9e; }
+.badge-interviewing { background: var(--yellow-soft); color: var(--brown); }
+.badge-offer        { background: var(--green-soft);  color: var(--forest); }
+.badge-rejected     { background: var(--brown-soft);  color: var(--muted); }
+
+/* delete button */
+.btn-delete {
+  padding: 4px 12px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: var(--brown-soft);
+  color: var(--brown);
+}

@@ -10,12 +10,16 @@ function App() {
     setApplications((prev) => [app, ...prev]);
   }
 
+  function handleDelete(id: string){
+   setApplications((prev) => prev.filter((app) => app.id !== id ));
+  }
+
   return (
     <main className="container">
       <h1>Job Tracker</h1>
       <ApplicationForm onAdd={addApplication} />
       <h2>My applications ({applications.length})</h2>
-      <ApplicationList applications={applications} />
+      <ApplicationList applications={applications} onDelete={handleDelete}/>
     </main>
   );
 }
