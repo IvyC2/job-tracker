@@ -1,11 +1,13 @@
-import type { Application } from '../types';
+import { STATUSES } from '../types';
+import type { Application, Status} from '../types';
 
 interface Props {
   applications: Application[];
   onDelete: (id: string) => void;
+  onStatusChange: (id: string, status: Status) => void;
 }
 
-export default function ApplicationList({ applications, onDelete }: Props) {
+export default function ApplicationList({ applications, onDelete, onStatusChange}: Props) {
   if (applications.length === 0) {
     return <p className="empty">No applications yet. Add your first one above!</p>;
   }
@@ -31,7 +33,16 @@ export default function ApplicationList({ applications, onDelete }: Props) {
               <td>{app.location || 'Location N/A'}</td>
               <td>{app.dateApplied}</td>
               <td>
-                <span className={`badge badge-${app.status.toLowerCase()}`}>{app.status}</span>
+                <select className={`badge badge-${app.status.toLowerCase()}`} 
+                  value={app.status} 
+                  onChange={(e) => onStatusChange(app.id, e.target.value as Status)}
+                >
+                  {STATUSES.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
+                </select>
               </td>
               <td>
                 <button type="button" onClick={() => onDelete(app.id)} className="btn-delete">

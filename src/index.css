@@ -194,3 +194,16 @@ h2 {
   background: var(--brown-soft);
   color: var(--brown);
 }
+
+select.badge {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+select.badge:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-soft);
+}
