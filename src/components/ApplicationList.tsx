@@ -9,7 +9,7 @@ interface Props {
 
 export default function ApplicationList({ applications, onDelete, onStatusChange}: Props) {
   if (applications.length === 0) {
-    return <p className="empty">No applications yet. Add your first one above!</p>;
+    return <p className="empty">Nothing here yet.</p>;
   }
 
   return (
