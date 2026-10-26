@@ -115,6 +115,43 @@ h2 {
   box-shadow: 0 0 0 3px var(--green-soft);
 }
 
+/* filter bar */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.filter-btn:hover {
+  color: var(--forest);
+  background: var(--green-soft);
+}
+
+.filter-btn.active {
+  color: #fff;
+  background: var(--forest);
+  border-color: var(--forest);
+}
+
+.filter-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--green-soft);
+}
+
 /* empty state */
 .empty {
   padding: 24px;
