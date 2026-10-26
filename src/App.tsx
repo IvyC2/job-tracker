@@ -1,12 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ApplicationForm from './components/ApplicationForm';
 import ApplicationList from './components/ApplicationList';
 import FilterBar from './components/FilterBar';
 import SearchBar from './components/SearchBar';
 import type { Application, Status } from './types';
 
+const STORAGE_KEY = 'job-tracker-applications';
+
 function App() {
-  const [applications, setApplications] = useState<Application[]>([]);
+  const [applications, setApplications] = useState<Application[]>(() => {
+    try {
+      const storageString = localStorage.getItem(STORAGE_KEY);
+      if (storageString === null) {
+        return [];
+      } else {
+        return JSON.parse(storageString);
+      }
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(applications));
+  }, [applications]);
+
   const [filter, setFilter] = useState<Status | 'All'>('All');
   const [query, setQuery] = useState('');
 
@@ -24,7 +42,7 @@ function App() {
     );
   }
 
- 
+
   const q = query.trim().toLowerCase();
 
   const visibleApps = applications.filter((app) => {
@@ -34,9 +52,10 @@ function App() {
 
     return matchesStatus && matchesQuery;
   });
-  
+
 
   const emptyMessage = applications.length === 0 ? 'No applications yet. Add your first one above!' : 'No applications match your filters.';
+  
 
   return (
     <main className="container">
@@ -45,7 +64,7 @@ function App() {
       <h2>My applications ({applications.length})</h2>
       <div className="toolbar">
         <FilterBar value={filter} onChange={setFilter} />
-        <SearchBar value={query} onChange={setQuery}/>
+        <SearchBar value={query} onChange={setQuery} />
       </div>
       <ApplicationList
         applications={visibleApps}
