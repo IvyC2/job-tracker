@@ -5,11 +5,12 @@ interface Props {
   applications: Application[];
   onDelete: (id: string) => void;
   onStatusChange: (id: string, status: Status) => void;
+  emptyMessage: string;
 }
 
-export default function ApplicationList({ applications, onDelete, onStatusChange}: Props) {
+export default function ApplicationList({ applications, emptyMessage, onDelete, onStatusChange }: Props) {
   if (applications.length === 0) {
-    return <p className="empty">Nothing here yet.</p>;
+    return <p className="empty">{emptyMessage}</p>;
   }
 
   return (
