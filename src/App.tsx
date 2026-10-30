@@ -4,6 +4,7 @@ import ApplicationList from './components/ApplicationList';
 import FilterBar from './components/FilterBar';
 import SearchBar from './components/SearchBar';
 import StatsPanel from './components/StatsPanel';
+import StatusChart from './components/StatusChart';
 import type { Application, Status } from './types';
 
 const STORAGE_KEY = 'job-tracker-applications';
@@ -67,6 +68,7 @@ function App() {
         <FilterBar value={filter} onChange={setFilter} />
         <SearchBar value={query} onChange={setQuery} />
         <StatsPanel applications={applications} />
+        <StatusChart applications={applications} /> 
       </div>
       <ApplicationList
         applications={visibleApps}
