@@ -35,6 +35,8 @@ function App() {
   }
 
   function handleDelete(id: string) {
+    const app = applications.find((a) => a.id === id);
+    if (!window.confirm(`Delete the application for ${app?.company}?`)) return;
     setApplications((prev) => prev.filter((app) => app.id !== id));
   }
 
