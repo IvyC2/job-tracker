@@ -1,23 +1,13 @@
 import type { Application } from '../types';
+import { getStats } from '../utils/stats';
 
 interface Props {
     applications: Application[];
 }
 
 export default function StatsPanel({ applications }: Props) {
-    const total = applications.length;
-    const interviews = applications.filter(
-        (app) => app.status === 'Interviewing' || app.status === 'Offer').length;
-
-    const offers = applications.filter(
-        (app) => app.status === 'Offer').length;
-
-    function percent(count: number, total: number) {
-        return total === 0 ? 0 : Math.round((count / total) * 100);
-    }
-
-    const interviewRate = percent(interviews, total);
-    const offerRate = percent(offers, total);
+    
+    const { total, interviews, interviewRate, offerRate } = getStats(applications);
 
     return (
         <section className="stats" aria-label="Application statistics">
